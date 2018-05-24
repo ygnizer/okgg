@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Events\Logined;
 
 class LoginController extends Controller
 {
@@ -42,4 +44,14 @@ class LoginController extends Controller
       return 'summonerName';
     }
 
+    /**
+     * ログイン認証後の処理
+     * @param Request $request
+     * @param $user
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        // ログインイベントを発火させ最終ログイン日時を記録する
+        event(new Logined());
+    }
 }

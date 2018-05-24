@@ -14,14 +14,15 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('summonerName')->unique();
-            $table->string('tier');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('twitterId');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->increments   ('id');
+            $table->string       ('summonerName') ->unique()            ->comment('サモナーネーム');
+            $table->string       ('tier')                               ->comment('Tier');
+            $table->string       ('twitterId')                          ->comment('twitterアカウント(@から始まるやつ)');
+            $table->string       ('email')        ->unique()            ->comment('メールアドレス');
+            $table->string       ('password')                           ->comment('パスワード');
+            $table->rememberToken()                                     ->comment('パスワード再設定時のやつ');
+            $table->timestamp    ('last_login_at')          ->nullable()->comment('最終ログイン');
+            $table->timestamps   ();
         });
     }
 
