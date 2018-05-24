@@ -26,6 +26,29 @@
                             </div>
                         </div>
 
+                        {{-- Tier --}}
+                        <div class="form-group row">
+                            <label for="tier" class="col-md-4 col-form-label text-md-right">{{ __('Tier') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="tier" class="form-control{{ $errors->has('tier') ? ' is-invalid' : '' }}" name="tier" value="{{ old('tier') }}" required>
+                                    <option value="Challenger" {{ old('tier')=='Challenger' ? 'selected="selected"' : '' }}>Challenger</option>
+                                    <option value="Diamond"    {{ old('tier')=='Diamond'    ? 'selected="selected"' : '' }}>Diamond</option>
+                                    <option value="Platinum"   {{ old('tier')=='Platinum'   ? 'selected="selected"' : '' }}>Platinum</option>
+                                    <option value="Gold"       {{ old('tier')=='Gold'       ? 'selected="selected"' : '' }}>Gold</option>
+                                    <option value="Silver"     {{ old('tier')=='Silver'     ? 'selected="selected"' : '' }}>Silver</option>
+                                    <option value="Bronze"     {{ old('tier')=='Bronze'     ? 'selected="selected"' : '' }}>Bronze</option>
+                                </select>
+
+                                @if ($errors->has('tier'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('tier') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
                         {{-- TwiterId --}}
                         <div class="form-group row">
                             <label for="twitterId" class="col-md-4 col-form-label text-md-right">{{ __('Twitter Account') }}</label>

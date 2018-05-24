@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -48,7 +48,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'summonerName' => 'required|string|max:255',
+            'summonerName' => 'required|string|max:255|unique:users',
+            'tier'         => 'required|string|max:255',
             'twitterId'    => 'required|string|max:255|unique:users',
             'email'        => 'required|string|email|max:255|unique:users',
             'password'     => 'required|string|min:6|confirmed',
@@ -65,6 +66,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'summonerName' => $data['summonerName'],
+            'tier'         => $data['tier'],
             'twitterId'    => $data['twitterId'],
             'email'        => $data['email'],
             'password'     => bcrypt($data['password']),
