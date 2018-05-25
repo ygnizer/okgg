@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard!　(You are logged in!)</div>
+                <div class="card-header">Dashboard!</div>
 
                 @if (session('status'))
                 <div class="card-body">
@@ -36,27 +36,31 @@
                     </form>
                 </div>
 
-                <div class="card-header">Now suggested!</div>
+                <div class="card-header">Recommended!</div>
                 <div class="card-body">
-                    @if (!empty($suggested))
-                    <div class="row">
+                    @forelse ($recommends as $recommend)
+                    <div class="row alert alert-info">
                         <div class="col-md-4">
-                            Name
+                            {{ $recommend->summonerName }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ $recommend->tier }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ App\Models\User::LANE_STATUSES[$recommend->laneFirst] }}
                         </div>
                         <div class="col-md-4">
-                            lane
-                        </div>
-                        <div class="col-md-4">
-                            twitterId
+                            {{ $recommend->twitterId }}
                         </div>
                     </div>
-                    @else
+
+                    @empty
                     <div class="row">
                         <div class="col-md-12 text-center">
                             No recommendation...
                         </div>
                     </div>
-                    @endif
+                    @endforelse
                 </div>
 
             </div>
