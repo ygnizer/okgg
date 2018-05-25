@@ -16,7 +16,7 @@
                             <label for="summonerName" class="col-md-4 col-form-label text-md-right">{{ __('SummonerName') }}</label>
 
                             <div class="col-md-6">
-                                <input id="summonerName" type="text" class="form-control{{ $errors->has('summonerName') ? ' is-invalid' : '' }}" name="summonerName" value="{{ old('summonerName') }}" required autofocus>
+                                <input id="summonerName" type="text" class="form-control{{ $errors->has('summonerName') ? ' is-invalid' : '' }}" name="summonerName" value="{{ old('summonerName') }}" placeholder='input your summonerName' required autofocus>
 
                                 @if ($errors->has('summonerName'))
                                     <span class="invalid-feedback">
@@ -54,7 +54,7 @@
                             <label for="twitterId" class="col-md-4 col-form-label text-md-right">{{ __('Twitter Account') }}</label>
 
                             <div class="col-md-6">
-                                <input id="twitterId" type="text" class="form-control{{ $errors->has('twitterId') ? ' is-invalid' : '' }}" name="twitterId" value="{{ old('twitterId') }}" required>
+                                <input id="twitterId" type="text" class="form-control{{ $errors->has('twitterId') ? ' is-invalid' : '' }}" name="twitterId" value="{{ old('twitterId') }}" placeholder='@twitterId' required>
 
                                 @if ($errors->has('twitterId'))
                                     <span class="invalid-feedback">
@@ -69,7 +69,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder='sample@email.com' required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
