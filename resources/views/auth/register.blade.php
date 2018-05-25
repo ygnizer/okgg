@@ -31,7 +31,7 @@
                             <label for="tier" class="col-md-4 col-form-label text-md-right">{{ __('Tier') }}</label>
 
                             <div class="col-md-6">
-                                <select name="tier" class="form-control{{ $errors->has('tier') ? ' is-invalid' : '' }}" name="tier" value="{{ old('tier') }}" required>
+                                <select name="tier" class="form-control{{ $errors->has('tier') ? ' is-invalid' : '' }}" name="tier" required>
                                     <option value="Challenger" {{ old('tier')=='Challenger' ? 'selected="selected"' : '' }}>Challenger</option>
                                     <option value="Diamond"    {{ old('tier')=='Diamond'    ? 'selected="selected"' : '' }}>Diamond</option>
                                     <option value="Platinum"   {{ old('tier')=='Platinum'   ? 'selected="selected"' : '' }}>Platinum</option>
@@ -43,6 +43,46 @@
                                 @if ($errors->has('tier'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('tier') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
+                        {{-- LaneFirst --}}
+                        <div class="form-group row">
+                            <label for="laneFirst" class="col-md-4 col-form-label text-md-right">{{ __('MainLane') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="laneFirst" class="form-control{{ $errors->has('laneFirst') ? ' is-invalid' : '' }}" name="laneFirst" required>
+                                    @foreach (App\Models\User::LANE_STATUSES as $laneId => $laneName)
+                                        <option value="{{$laneId}}" {{ old('laneFirst')==$laneId ? 'selected="selected"' : '' }}>{{$laneName}}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('laneFirst'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('laneFirst') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                        </div>
+
+                        {{-- LaneSecond --}}
+                        <div class="form-group row">
+                            <label for="laneSecond" class="col-md-4 col-form-label text-md-right">{{ __('SubLane') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="laneSecond" class="form-control{{ $errors->has('laneSecond') ? ' is-invalid' : '' }}" name="laneSecond" required>
+                                    @foreach (App\Models\User::LANE_STATUSES as $laneId => $laneName)
+                                        <option value="{{$laneId}}" {{ old('laneSecond')==$laneId ? 'selected="selected"' : '' }}>{{$laneName}}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('laneSecond'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('laneSecond') }}</strong>
                                     </span>
                                 @endif
 

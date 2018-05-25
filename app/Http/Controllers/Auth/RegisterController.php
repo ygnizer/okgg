@@ -52,6 +52,8 @@ class RegisterController extends Controller
             'tier'         => 'required|string|max:255',
             'twitterId'    => 'required|string|max:255|unique:users',
             'email'        => 'required|string|email|max:255|unique:users',
+            'laneFirst'    => 'required|int|min:0|max:5',
+            'laneSecond'   => 'required|int|min:0|max:5',
             'password'     => 'required|string|min:6|confirmed',
         ]);
     }
@@ -69,6 +71,8 @@ class RegisterController extends Controller
             'tier'         => $data['tier'],
             'twitterId'    => $data['twitterId'],
             'email'        => $data['email'],
+            'laneFirst'    => $data['laneFirst'],
+            'laneSecond'   => $data['laneSecond'],
             'password'     => bcrypt($data['password']),
         ]);
     }
