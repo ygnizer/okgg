@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard　(You are logged in!)</div>
+                <div class="card-header">Dashboard!　(You are logged in!)</div>
 
                 @if (session('status'))
                 <div class="card-body">
@@ -35,6 +35,30 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="card-header">Now suggested!</div>
+                <div class="card-body">
+                    @if (!empty($suggested))
+                    <div class="row">
+                        <div class="col-md-4">
+                            Name
+                        </div>
+                        <div class="col-md-4">
+                            lane
+                        </div>
+                        <div class="col-md-4">
+                            twitterId
+                        </div>
+                    </div>
+                    @else
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            No recommendation...
+                        </div>
+                    </div>
+                    @endif
+                </div>
+
             </div>
         </div>
     </div>
