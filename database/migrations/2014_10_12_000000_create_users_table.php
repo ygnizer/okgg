@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string       ('tier')                               ->comment('Tier');
             $table->string       ('twitterId')                          ->comment('twitterアカウント(@から始まるやつ)');
             $table->string       ('email')        ->unique()            ->comment('メールアドレス');
+            $table->tinyinteger  ('recruitStatus')->unsigned()->default(0)->comment('募集ステータス、0:nothing, 1:waiting, 2:recruiting');
             $table->string       ('password')                           ->comment('パスワード');
             $table->rememberToken()                                     ->comment('パスワード再設定時のやつ');
             $table->timestamp    ('last_login_at')          ->nullable()->comment('最終ログイン');

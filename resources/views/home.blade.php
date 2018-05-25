@@ -17,13 +17,14 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('updateRecruitStatus') }}">
+                        @csrf
                         <div class="form-group row">
                             <label for="recruitStatus" class="col-md-4 col-form-label text-md-right">{{ __('Your recruit status') }}</label>
                             <div class="col-md-4">
-                                <select name="status" class="form-control" name="status" value="{{ old('user.status') }}" required>
-                                    <option value="0" {{ old('status')==0 ? 'selected="selected"' : '' }}>Do nothing</option>
-                                    <option value="1" {{ old('status')==1 ? 'selected="selected"' : '' }}>Wait for recruiting</option>
-                                    <option value="2" {{ old('status')==2 ? 'selected="selected"' : '' }}>Recruit</option>
+                                <select name="recruitStatus" class="form-control" name="recruitStatus" required>
+                                    @foreach (App\Models\User::RECRUIT_STATUSES as $statusId => $statusMessage)
+                                        <option value="{{$statusId}}" {{ $user->recruitStatus==$statusId ? 'selected="selected"' : '' }}>{{$statusMessage}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-4">

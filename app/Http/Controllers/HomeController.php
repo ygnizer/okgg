@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        // 
+        $user = $request->user();
+        return view('home', compact('user'));
     }
+
+    /**
+     * Update users.recruitStatus
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateRecruitStatus(Request $request)
+    {
+        
+        $data = $request->all();
+        Validator::make($data, [
+            'recruitStatus' => 'required|int|min:0|max:2',
+        ])->validate();
+        $request->user()->update([
+            'recruitStatus' => $data['recruitStatus'],
+        ]);
+
+        return redirect('home');
+    }
+
+
 }
